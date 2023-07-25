@@ -1,29 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
-  labels:
-    app: nginx
+  name: fwinsights
 spec:
-  replicas: 3
   selector:
     matchLabels:
-      app: nginx
+      app: fwinsights
   template:
     metadata:
       labels:
-        app: nginx
+        app: fwinsights
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.7.9
+      - name: fwinsights
+        image: nginx:1.18-alpine
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "2048Mi"
+            cpu: "1000m"
         ports:
         - containerPort: 80
-        securityContext:
-          allowPrivilegeEscalation: true
-          privileged: false 
-          readOnlyRootFilesystem: true
-          runAsNonRoot: true
-          capabilities:
-            drop:
-              - ALL
