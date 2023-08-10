@@ -20,6 +20,6 @@ spec:
             cpu: "50m"
           limits:
             memory: "2048Mi"
-            cpu: "100m"
+            cpu: "1000m"
         ports:
         - containerPort: 80
